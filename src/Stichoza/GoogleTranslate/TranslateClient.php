@@ -50,7 +50,7 @@ class TranslateClient
     /**
      * @var string Google Translate URL base
      */
-    private $urlBase = 'http://translate.google.com/translate_a/t';
+    private $urlBase = 'http://translate.google.com/translate_a/single';
 
     /**
      * @var array URL Parameters
@@ -244,7 +244,7 @@ class TranslateClient
         $queryUrl = preg_replace('/%5B(?:[0-9]|[1-9][0-9]+)%5D=/', '=', http_build_query($queryArray));
 
         try {
-            $response = $this->httpClient->post($this->urlBase, ['body' => $queryUrl]);
+            $response = $this->httpClient->post($this->urlBase, ['body' => $queryUrl . "&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t"]);
         } catch (GuzzleRequestException $e) {
             throw new ErrorException($e->getMessage());
         }
